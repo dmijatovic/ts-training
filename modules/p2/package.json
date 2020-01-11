@@ -8,15 +8,21 @@
   "author": "Dusan Mijatovic <d.mijatovic@dv4all.nl> (xps2018)",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/p3.js",
+  "main": "dist/index.html",
   "directories": {
-    "lib": "lib",
+    "lib": "dist",
     "test": "__tests__"
   },
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "start": "parcel index.html"
+  },
+  "dependencies": {
+    "@types/faker": "^4.1.9",
+    "@types/googlemaps": "^3.39.1",
+    "faker": "^4.1.0",
+    "parcel-bundler": "^1.12.4"
   }
 }
