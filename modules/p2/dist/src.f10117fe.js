@@ -85107,7 +85107,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var faker_1 = __importDefault(require("faker"));
+var faker_1 = __importDefault(require("faker")); // User class that is required to implement
+// specific interface, in this case MarkerContent
+// interface implemenation is OPTIONAL
+
 
 var User =
 /** @class */
@@ -85124,6 +85127,15 @@ function () {
       lat: parseFloat(faker_1.default.address.latitude()),
       lng: parseFloat(faker_1.default.address.longitude())
     };
+  };
+  /**
+   * Marker info is used by CustomMap in order to show
+   * popup info
+   */
+
+
+  User.prototype.markerInfo = function () {
+    return "\n    <h1 class=\"popup-title\">" + this.name + "</h1>\n    <p class=\"popup-paragraph\">This is user info!</p>\n    <p class=\"popup-paragraph\">" + JSON.stringify(this.location) + "</p>\n    ";
   };
 
   return User;
@@ -85157,12 +85169,180 @@ function () {
       lng: parseFloat(faker_1.default.address.longitude())
     };
   }
+  /**
+   * Marker info is used by CustomMap in order to show
+   * popup info
+   */
+
+
+  Company.prototype.markerInfo = function () {
+    return "\n    <h1 class=\"popup-title\">" + this.name + "</h1>\n    <p class=\"popup-paragraph\">This is company info!</p>\n    <p class=\"popup-paragraph\">" + this.catchPhrase + "</p>\n    ";
+  };
 
   return Company;
 }();
 
 exports.Company = Company;
-},{"faker":"node_modules/faker/index.js"}],"src/index.ts":[function(require,module,exports) {
+},{"faker":"node_modules/faker/index.js"}],"src/CustomMap.ts":[function(require,module,exports) {
+"use strict";
+/**
+ * Custom Map class using GoogleMaps.
+ * Access to GMaps outside of class is restricted by setting gMap to private.
+ *
+ */
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var CustomMap =
+/** @class */
+function () {
+  function CustomMap(mapDiv, mapOptions) {
+    this.markers = [];
+    this.gMap = new google.maps.Map(mapDiv, mapOptions);
+  }
+
+  CustomMap.prototype.addMarker = function (markerContent) {
+    // addMarker(position:google.maps.LatLngLiteral){
+    console.log("adding marker...", markerContent);
+    var marker = new google.maps.Marker({
+      map: this.gMap,
+      position: markerContent.location
+    });
+    this.markers.push(marker); //add marker info
+
+    if (markerContent.markerInfo) {
+      //create info
+      var info = this.createInfoWindow(markerContent.markerInfo()); //add listener
+
+      this.addInfoToMarkerEvent(marker, info);
+    }
+
+    return marker;
+  };
+
+  CustomMap.prototype.createInfoWindow = function (html, options) {
+    var info = new google.maps.InfoWindow(__assign(__assign({}, options), {
+      content: html
+    }));
+    return info;
+  };
+  /**
+   * Add info to marker on event
+   * @param marker
+   * @param info
+   * @param event
+   */
+
+
+  CustomMap.prototype.addInfoToMarkerEvent = function (marker, info, event) {
+    var _this = this;
+
+    if (event === void 0) {
+      event = 'click';
+    }
+
+    marker.addListener(event, function (e) {
+      //show info on click
+      console.log("Clicked on...", e);
+      info.open(_this.gMap, marker);
+    });
+  };
+
+  return CustomMap;
+}();
+
+exports.CustomMap = CustomMap;
+},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 /**
  * Google maps typescript demo project
@@ -85176,11 +85356,37 @@ var User_1 = require("./User");
 
 var Company_1 = require("./Company");
 
+var CustomMap_1 = require("./CustomMap");
+
+require("./index.css");
+
 var user = new User_1.User();
 var company = new Company_1.Company();
 console.log(user);
 console.log(company);
-},{"./User":"src/User.ts","./Company":"src/Company.ts"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var mapOptions = {
+  zoom: 1,
+  center: {
+    lat: 0,
+    lng: 0
+  }
+};
+var mapDiv = document.getElementById('gmap');
+var map = new CustomMap_1.CustomMap(mapDiv, mapOptions);
+var userMarker = map.addMarker(user); // const userInfo = map.createInfoWindow(`
+// <h1 class="popup-title">${user.name}</h1>
+// <p class="popup-paragraph">This is user info!</p>
+// <p class="popup-paragraph">${JSON.stringify(user.location)}</p>
+// `)
+// map.addInfoToMarkerEvent(userMarker, userInfo)
+
+var companyMarker = map.addMarker(company); // const companyInfo = map.createInfoWindow(`
+//   <h1 class="popup-title">${company.name}</h1>
+//   <p class="popup-paragraph">This is company info!</p>
+//   <p class="popup-paragraph">${company.catchPhrase}</p>
+// `)
+// map.addInfoToMarkerEvent(companyMarker,companyInfo)
+},{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts","./index.css":"src/index.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -85208,7 +85414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36925" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38647" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
