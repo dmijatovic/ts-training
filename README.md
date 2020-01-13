@@ -30,3 +30,4 @@ All code from training is stored in modules folder. As there are multiple projec
 - [P3](modules/p3/README.md): sorting lib with nodejs. Using interfaces and abstract classes.
 - [P4](modules/p4/README.md): premier league analyses and reporting app with typescript.
 - [P5](modules/p5/README.md): using generic types in classes and functions.
+- [P6](modules/p6/README.md): frontend framework with Typescript. Kind of react?!?
