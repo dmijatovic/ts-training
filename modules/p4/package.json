@@ -1,21 +1,23 @@
 {
-  "name": "bubble-sort",
+  "name": "premier-league",
   "version": "1.0.0",
-  "description": "sorting module with typescript",
+  "description": "Premier league analyses with typescript",
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc -w",
     "build": "tsc",
-    "nodemon":"nodemon dist/index.js",
-    "dev":"concurrently npm:start npm:nodemon"
+    "nodemon": "nodemon dist/index.js",
+    "dev": "concurrently npm:start npm:nodemon"
   },
   "keywords": [
-    "sorting",
+    "footbal",
+    "premier legaue",
     "typescript"
   ],
   "author": "Dusan Mijatovic",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^13.1.6",
     "concurrently": "^5.0.2",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.1",

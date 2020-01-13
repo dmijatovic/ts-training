@@ -27,4 +27,5 @@ All code from training is stored in modules folder. As there are multiple projec
 
 - [P1](modules/p1/README.md): basic typescript project explaining type declarations.
 - [P2](modules/p2/README.md): typesctipt app with Google maps to show location. It uses Parcel for bundling.
-- [P3](modules/p2/README.md): sorting lib with nodejs. Using interfaces and abstract classes.
+- [P3](modules/p3/README.md): sorting lib with nodejs. Using interfaces and abstract classes.
+- [P4](modules/p4/README.md): premier league analyses and reporting app with typescript.
