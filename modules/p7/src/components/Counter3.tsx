@@ -23,7 +23,7 @@ const Counter3:React.FC<C3Props> = (props:C3Props) => {
   return (
     <div className="counter-section">
       <div className="counter-text">
-        <h3>Functional typed counter 3 witn name "{name}"</h3>
+        <h3>Functional typed counter component witn prop name: "{name}"</h3>
         <p>This component is TYPED function component and uses redux
             store and hooks
         </p>

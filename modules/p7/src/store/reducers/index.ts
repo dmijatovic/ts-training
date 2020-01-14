@@ -8,7 +8,7 @@ export interface counterState{
 export interface ToDo{
   id: number,
   title: string,
-  done: boolean
+  completed: boolean
 }
 
 export interface todoState{

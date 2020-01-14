@@ -13,18 +13,26 @@
 .App section{
   flex:1;
   padding: 2rem;
+  height: 100vh;
+  overflow-y: auto
 }
 
 .App section:first-child{
   border-right: 1px solid goldenrod;
 }
 
-.counter-value{
-  font-size:3rem;
-  text-align: center;
+.counter-section{
+  border:1px solid lightgray;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
-.todo-section{
-  height: 100vh;
-  overflow-y: auto;
+.counter-section h3{
+  padding: 1rem 0rem;
+}
+
+.counter-value{
+  padding: 1rem 0rem;
+  font-size:3rem;
+  text-align: center;
 }

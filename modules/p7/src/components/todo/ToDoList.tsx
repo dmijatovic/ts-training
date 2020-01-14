@@ -1,19 +1,22 @@
 import React from 'react';
 import {useSelector} from 'react-redux'
 import {ToDo} from "../../store/reducers"
+import ToDoItem from "./ToDoItem"
+
 const ToDoList = () => {
   const todos:ToDo[] = useSelector((state:any)=>{
     const {todo} = state['FetchToDo']
     return todo
   })
   return (
-    <div>
+    <div className="ToDoList-body">
       {
         todos.map(todo=>{
           return (
-            <p key={todo.id}>
-              {todo.title}, done:{todo.done ? "Y" : "N"}
-            </p>
+            <ToDoItem
+              key={todo.id}
+              {...todo}
+            />
           )
         })
       }

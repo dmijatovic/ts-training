@@ -10,3 +10,22 @@
   display:flex;
   justify-content: center;
 }
+
+.ToDoList-body{
+  display:grid;
+  grid-gap: 1rem;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 5rem;
+}
+
+.ToDoItem{
+  display:flex;
+  /* justify-content: center; */
+  align-items: center;
+  border: 1px solid lightgrey;
+  padding: 0.5rem;
+}
+
+.ToDoItem.completed{
+  background-color: lightgreen;
+}
