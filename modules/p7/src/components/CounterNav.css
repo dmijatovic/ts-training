@@ -1,0 +1,23 @@
+.CounterNav{
+  display:flex;
+  justify-content: center;
+  padding: 1rem 0rem;
+}
+
+.CounterNav button{
+  border:none;
+  padding: 1rem;
+  margin-right:1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius:0.25rem;
+  opacity:0.9;
+}
+
+.CounterNav button:first-child{
+  background-color: red;
+}
+
+.CounterNav button:last-child{
+  background-color: green;
+}

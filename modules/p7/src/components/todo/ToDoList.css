@@ -1,0 +1,12 @@
+
+
+.ToDoList-header{
+  display:flex;
+  justify-content: space-between;
+  padding-bottom:2rem;
+}
+
+.Loader{
+  display:flex;
+  justify-content: center;
+}

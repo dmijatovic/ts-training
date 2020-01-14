@@ -1,0 +1,30 @@
+
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
+
+.App{
+  display:flex;
+}
+
+
+.App section{
+  flex:1;
+  padding: 2rem;
+}
+
+.App section:first-child{
+  border-right: 1px solid goldenrod;
+}
+
+.counter-value{
+  font-size:3rem;
+  text-align: center;
+}
+
+.todo-section{
+  height: 100vh;
+  overflow-y: auto;
+}
