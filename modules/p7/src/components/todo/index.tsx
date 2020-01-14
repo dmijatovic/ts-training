@@ -9,7 +9,7 @@ import "./ToDoList.css"
 const ToDoSection = () => {
   const dispatch = useDispatch()
   const loading = useSelector((store:any)=>{
-    const {loading} = store['FetchToDo']
+    const {loading} = store['todos']
     return loading 
   })
   return (

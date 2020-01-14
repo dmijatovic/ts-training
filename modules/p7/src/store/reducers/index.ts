@@ -60,7 +60,12 @@ export const FetchToDo = (state:todoState=defaultToDo, action:Action<any>)=>{
   }
 }
 
-export const rootReducer = combineReducers({
-  MutateCounter,
-  FetchToDo
+interface StoreState{
+  counter: counterState,
+  todos: todoState
+}
+
+export const rootReducer = combineReducers<StoreState>({
+  counter:MutateCounter,
+  todos:FetchToDo
 })

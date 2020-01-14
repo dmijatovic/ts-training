@@ -7,11 +7,11 @@ const ToDoItem = (props:ToDo) => {
   const classes =`ToDoItem ${completed?"completed":""}`
   return (
     <div className={classes}>
-      <div className="todo-text">
-        {title}
-      </div>
-      <div className="todo-staus">
+      <div className="ToDoItem-status">
         {completed ? "DONE" : "OPEN"}
+      </div>
+      <div className="ToDoItem-title">
+        {title}
       </div>
     </div>
   );

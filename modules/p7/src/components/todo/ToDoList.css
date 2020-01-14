@@ -8,24 +8,40 @@
 
 .Loader{
   display:flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.Loader h1{
+  padding: 2rem 0rem;
 }
 
 .ToDoList-body{
   display:grid;
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
   grid-template-columns: auto auto auto;
-  grid-template-rows: 5rem;
+  grid-template-rows: 7rem;
 }
 
 .ToDoItem{
   display:flex;
+  flex-direction: column;
   /* justify-content: center; */
-  align-items: center;
+  /* align-items: center; */
   border: 1px solid lightgrey;
   padding: 0.5rem;
 }
 
 .ToDoItem.completed{
   background-color: lightgreen;
+}
+
+.ToDoItem-status{
+  padding:0.5rem 0rem;
+  font-weight: 600;
+}
+
+.ToDoItem-title{
+  text-align: justify;
+  word-break: break-all;
 }

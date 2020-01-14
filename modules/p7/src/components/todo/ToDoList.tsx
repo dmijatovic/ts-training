@@ -5,7 +5,7 @@ import ToDoItem from "./ToDoItem"
 
 const ToDoList = () => {
   const todos:ToDo[] = useSelector((state:any)=>{
-    const {todo} = state['FetchToDo']
+    const {todo} = state['todos']
     return todo
   })
   return (
