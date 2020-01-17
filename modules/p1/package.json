@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.19.1",
     "faker": "^4.1.0",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "reflect-metadata":"0.1.13"
   }
 }
