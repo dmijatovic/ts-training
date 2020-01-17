@@ -10,7 +10,20 @@ See the npm scripts for this. In short to build we use tsc and to build and run 
 
 `npm start` will build index.ts and run it. `npm build` will build js files from ts files
 
-## Variable types
+## Explained concepts
+
+In the `src` folder you will find a ts file per explained concept. To run a file you can use tsc compiler: `npx ts-node <filename>`
+
+- arrays
+- classes
+- decorators: to enable decorators set `experimentalDecorators` ON in tscconfig file.
+- functions
+- interfaces
+- objects
+- tuples
+- variables
+
+### Variable types
 
 Type inference system works in most situations and should be used. But if type is any then we need to define it manually.
 
@@ -70,4 +83,16 @@ numbers.forEach(n => {if (n > 0) numAboveZero = n})
 
 ```
 
-## Function definitions
+### Decorators
+
+Decorator can be used on property, getter and method and method parameters. Most useful is applying decorators to method. Decorator is executed ONCE when class is defined (not when new class is created). This is why decorating properties does not have lot of merit (the value of prop is not avaliable at that time).
+
+```javascript
+
+function myDecorator(target:any, key:string){
+  console.log("Target is class where decorator is", target)
+  console.log("Key is method where decorator is applied", key)
+}
+
+
+```
